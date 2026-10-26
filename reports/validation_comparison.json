@@ -1,0 +1,114 @@
+{
+  "experiment_A_unweighted": {
+    "params": {
+      "n_estimators": "300",
+      "max_depth": "6",
+      "learning_rate": "0.1",
+      "min_child_weight": "5",
+      "subsample": "0.8",
+      "colsample_bytree": "0.8",
+      "reg_alpha": "0.01",
+      "reg_lambda": "1.0",
+      "eval_metric": "aucpr",
+      "random_state": "42",
+      "n_jobs": "-1"
+    },
+    "validation_metrics": {
+      "confusion_matrix": {
+        "TN": 42487,
+        "FP": 1,
+        "FN": 19,
+        "TP": 52
+      },
+      "total_samples": 42559,
+      "total_fraud": 71,
+      "total_legitimate": 42488,
+      "fraud_detected": 52,
+      "fraud_missed": 19,
+      "legitimate_incorrectly_flagged": 1,
+      "accuracy": 0.999530064146244,
+      "fraud_precision": 0.9811320754716981,
+      "fraud_recall": 0.7323943661971831,
+      "fraud_f1": 0.8387096774193549,
+      "specificity": 0.9999764639427603,
+      "false_positive_rate": 2.3536057239691207e-05,
+      "false_negative_rate": 0.2676056338028169,
+      "balanced_accuracy": 0.8661854150699717,
+      "roc_auc": 0.973228895118025,
+      "average_precision": 0.8475172275920532,
+      "pr_auc": 0.847323293444009,
+      "threshold_used": 0.5
+    }
+  },
+  "experiment_B_weighted": {
+    "params": {
+      "n_estimators": "300",
+      "max_depth": "6",
+      "learning_rate": "0.1",
+      "min_child_weight": "5",
+      "subsample": "0.8",
+      "colsample_bytree": "0.8",
+      "reg_alpha": "0.01",
+      "reg_lambda": "1.0",
+      "eval_metric": "aucpr",
+      "random_state": "42",
+      "n_jobs": "-1",
+      "scale_pos_weight": "599.02416918429"
+    },
+    "validation_metrics": {
+      "confusion_matrix": {
+        "TN": 42484,
+        "FP": 4,
+        "FN": 17,
+        "TP": 54
+      },
+      "total_samples": 42559,
+      "total_fraud": 71,
+      "total_legitimate": 42488,
+      "fraud_detected": 54,
+      "fraud_missed": 17,
+      "legitimate_incorrectly_flagged": 4,
+      "accuracy": 0.9995065673535563,
+      "fraud_precision": 0.9310344827586207,
+      "fraud_recall": 0.7605633802816901,
+      "fraud_f1": 0.8372093023255814,
+      "specificity": 0.9999058557710412,
+      "false_positive_rate": 9.414422895876483e-05,
+      "false_negative_rate": 0.23943661971830985,
+      "balanced_accuracy": 0.8802346180263656,
+      "roc_auc": 0.9683396935936841,
+      "average_precision": 0.857238293320639,
+      "pr_auc": 0.8570544339160789,
+      "threshold_used": 0.5
+    }
+  },
+  "selection_criterion": "Primary criterion: Highest fraud-class F1-score on the validation set. Secondary criterion: High precision to minimize false alarms in operational bank workflows. Evaluated strictly on the validation partition prior to inspecting test data.",
+  "selected_experiment": "A_unweighted",
+  "selection_reason": "Experiment A (unweighted) achieved higher validation F1 (0.8387 vs 0.8372) and superior precision (0.9811 vs 0.9310), resulting in substantially fewer false alarms while maintaining strong fraud detection.",
+  "validation_A_unweighted_at_best_threshold": {
+    "confusion_matrix": {
+      "TN": 42487,
+      "FP": 1,
+      "FN": 17,
+      "TP": 54
+    },
+    "total_samples": 42559,
+    "total_fraud": 71,
+    "total_legitimate": 42488,
+    "fraud_detected": 54,
+    "fraud_missed": 17,
+    "legitimate_incorrectly_flagged": 1,
+    "accuracy": 0.9995770577316196,
+    "fraud_precision": 0.9818181818181818,
+    "fraud_recall": 0.7605633802816901,
+    "fraud_f1": 0.8571428571428571,
+    "specificity": 0.9999764639427603,
+    "false_positive_rate": 2.3536057239691207e-05,
+    "false_negative_rate": 0.23943661971830985,
+    "balanced_accuracy": 0.8802699221122252,
+    "roc_auc": 0.973228895118025,
+    "average_precision": 0.8475172275920532,
+    "pr_auc": 0.847323293444009,
+    "threshold_used": 0.41187015175819397
+  }
+}

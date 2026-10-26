@@ -1,0 +1,15 @@
+# FinShield AI — Dependencies
+# Compatible with Python 3.10, 3.11, 3.12, 3.13, 3.14
+# Tested on Python 3.14.3 (macOS Sonoma / Apple Silicon)
+# Install via: pip install -r requirements.txt
+
+pandas>=2.0.0,<4.0.0
+numpy>=1.24.0,<3.0.0
+scikit-learn>=1.3.0,<2.0.0
+xgboost>=2.0.0,<4.0.0
+shap>=0.43.0,<1.0.0
+streamlit>=1.30.0,<2.0.0
+matplotlib>=3.7.0,<4.0.0
+joblib>=1.3.0,<2.0.0
+scipy>=1.10.0,<2.0.0
+pytest>=8.0.0

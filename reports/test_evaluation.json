@@ -1,0 +1,30 @@
+{
+  "confusion_matrix": {
+    "TN": 42483,
+    "FP": 5,
+    "FN": 19,
+    "TP": 52
+  },
+  "total_samples": 42559,
+  "total_fraud": 71,
+  "total_legitimate": 42488,
+  "fraud_detected": 52,
+  "fraud_missed": 19,
+  "legitimate_incorrectly_flagged": 5,
+  "accuracy": 0.9994360769754929,
+  "fraud_precision": 0.9122807017543859,
+  "fraud_recall": 0.7323943661971831,
+  "fraud_f1": 0.8125,
+  "specificity": 0.9998823197138016,
+  "false_positive_rate": 0.00011768028619845603,
+  "false_negative_rate": 0.2676056338028169,
+  "balanced_accuracy": 0.8661383429554923,
+  "roc_auc": 0.962560431313166,
+  "average_precision": 0.8173338178517131,
+  "pr_auc": 0.8167209740457106,
+  "threshold_used": 0.41187015175819397,
+  "split": "test",
+  "model_experiment": "A_unweighted",
+  "model_version": "finshield-v1",
+  "note": "These metrics are from the held-out test set and were NOT used for model or threshold selection."
+}

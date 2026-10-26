@@ -1,0 +1,75 @@
+# ==============================================================================
+# FinShield AI — Git Ignore Configuration
+# ==============================================================================
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing, coverage, and caches
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Operating System specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# IDE and text editor temporary files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Secrets, API keys, credentials, and local configuration
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Streamlit local runtime & secrets
+.streamlit/secrets.toml
+.streamlit/*.local.*
+
+# Temporary / Scratch files & Logs
+scratch/
+*.log
+*.tmp
+
+# Large raw datasets (Exceeds GitHub 100MB limit — download from Kaggle)
+creditcard.csv
+data/creditcard.csv
+data/raw/creditcard.csv
+*.zip
+*.tar.gz
+
+# Note: The following are deliberately NOT ignored and are tracked in Git:
+# - artifacts/model_bundle.joblib  (~370 KB trained model bundle for immediate dashboard run)
+# - reports/*.json                 (Evaluation, validation, and threshold analysis reports)
+# - sample_batch.csv               (30-row inference batch demo file)
+# - data/sample_transactions.csv   (10-row labeled demo transactions file)
