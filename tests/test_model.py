@@ -19,7 +19,12 @@ from src.config import (
     TARGET_COL,
 )
 from src.metrics import compute_metrics
-from src.predict import clear_bundle_cache, predict_batch, predict_single
+from src.predict import (
+    clear_bundle_cache,
+    load_model_bundle,
+    predict_batch,
+    predict_single,
+)
 from src.preprocessing import Preprocessor
 
 
@@ -46,7 +51,7 @@ def _clear_cache():
 
 @pytest.fixture
 def bundle():
-    return joblib.load(MODEL_BUNDLE_PATH)
+    return load_model_bundle()
 
 
 @pytest.fixture

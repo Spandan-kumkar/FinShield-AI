@@ -28,6 +28,7 @@ from src.config import (
     EVALUATION_RESULTS_PATH,
     FEATURE_COLUMNS,
     MODEL_BUNDLE_PATH,
+    MODEL_JSON_PATH,
     MODEL_VERSION,
     RANDOM_SEED,
     REPORTS_DIR,
@@ -286,9 +287,16 @@ def run_training_pipeline() -> None:
     ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Model bundle — everything needed for inference
+    # Save native XGBoost model in universal JSON format (cross-platform compatible across Windows, Mac, Linux)
+    selected_model.save_model(str(MODEL_JSON_PATH))
+    logger.info("  Native XGBoost model saved → %s", MODEL_JSON_PATH)
+
+    # Model bundle — preprocessor, threshold, and metadata needed for inference
+    # Note: 'model' is kept as None in the serialized bundle to prevent OS-specific
+    # C++ binary serialization conflicts across platforms (e.g. macOS ARM64 vs Windows).
+    # load_model_bundle() automatically links the model from model.json.
     bundle = {
-        "model": selected_model,
+        "model": None,
         "preprocessor": preprocessor,
         "threshold": selected_threshold,
         "feature_columns": FEATURE_COLUMNS,

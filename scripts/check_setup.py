@@ -108,11 +108,14 @@ def main() -> int:
 
     # ── 4. Pre-Trained Model Bundle Health Check ─────────────────────
     print(f"\n{Colors.BOLD}4. Model Artifacts & Inference Pipeline:{Colors.RESET}")
-    from src.config import MODEL_BUNDLE_PATH, FEATURE_COLUMNS
+    from src.config import FEATURE_COLUMNS, MODEL_BUNDLE_PATH, MODEL_JSON_PATH
     from src.predict import load_model_bundle, predict_single
 
     if not MODEL_BUNDLE_PATH.exists():
         print_status("Model Bundle File", "FAIL", f"Missing at {MODEL_BUNDLE_PATH.name}")
+        failures += 1
+    elif not MODEL_JSON_PATH.exists():
+        print_status("Model JSON Weights", "FAIL", f"Missing at {MODEL_JSON_PATH.name}")
         failures += 1
     else:
         try:

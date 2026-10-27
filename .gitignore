@@ -69,7 +69,8 @@ data/raw/creditcard.csv
 *.tar.gz
 
 # Note: The following are deliberately NOT ignored and are tracked in Git:
-# - artifacts/model_bundle.joblib  (~370 KB trained model bundle for immediate dashboard run)
+# - artifacts/model.json          (Native cross-platform XGBoost model for universal OS support)
+# - artifacts/model_bundle.joblib (Cross-platform metadata & scaler for immediate dashboard run)
 # - reports/*.json                 (Evaluation, validation, and threshold analysis reports)
 # - sample_batch.csv               (30-row inference batch demo file)
 # - data/sample_transactions.csv   (10-row labeled demo transactions file)

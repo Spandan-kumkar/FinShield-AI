@@ -13,7 +13,15 @@ import joblib
 import numpy as np
 import pandas as pd
 
-from src.config import FEATURE_COLUMNS, LABEL_MAP, MODEL_BUNDLE_PATH, TARGET_COL
+import xgboost as xgb
+
+from src.config import (
+    FEATURE_COLUMNS,
+    LABEL_MAP,
+    MODEL_BUNDLE_PATH,
+    MODEL_JSON_PATH,
+    TARGET_COL,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +32,11 @@ _cached_bundle: Optional[dict] = None
 
 
 def load_model_bundle(path: Path = MODEL_BUNDLE_PATH) -> dict:
-    """Load (and cache) the model bundle from disk."""
+    """Load (and cache) the model bundle from disk.
+
+    Supports both self-contained bundles and universal cross-platform
+    bundles where XGBoost model weights are stored in model.json.
+    """
     global _cached_bundle
     if _cached_bundle is not None:
         return _cached_bundle
@@ -32,7 +44,27 @@ def load_model_bundle(path: Path = MODEL_BUNDLE_PATH) -> dict:
         raise FileNotFoundError(
             f"Model bundle not found at {path}. Run 'python -m src.train' first."
         )
-    _cached_bundle = joblib.load(path)
+    bundle = joblib.load(path)
+
+    # Cross-platform model resolution:
+    # If the bundle does not have a live XGBClassifier or model.json exists,
+    # load from native JSON format to prevent OS-specific C++ binary corruption.
+    current_model = bundle.get("model")
+    if current_model is None or not hasattr(current_model, "predict_proba"):
+        if MODEL_JSON_PATH.exists():
+            model = xgb.XGBClassifier()
+            model.load_model(str(MODEL_JSON_PATH))
+            bundle["model"] = model
+        else:
+            raise FileNotFoundError(
+                f"Model bundle at {path} contains no model object and native {MODEL_JSON_PATH} was not found."
+            )
+    elif MODEL_JSON_PATH.exists() and not hasattr(current_model, "predict_proba"):
+        model = xgb.XGBClassifier()
+        model.load_model(str(MODEL_JSON_PATH))
+        bundle["model"] = model
+
+    _cached_bundle = bundle
     logger.info("Model bundle loaded from %s", path)
     return _cached_bundle
 

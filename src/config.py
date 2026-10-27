@@ -20,6 +20,7 @@ DATASET_PATH = PROJECT_ROOT / "creditcard.csv"
 
 # Model artifacts
 MODEL_BUNDLE_PATH = ARTIFACTS_DIR / "model_bundle.joblib"
+MODEL_JSON_PATH = ARTIFACTS_DIR / "model.json"
 EVALUATION_RESULTS_PATH = REPORTS_DIR / "test_evaluation.json"
 VALIDATION_RESULTS_PATH = REPORTS_DIR / "validation_comparison.json"
 THRESHOLD_CURVE_PATH = REPORTS_DIR / "threshold_analysis.json"
